@@ -11,7 +11,6 @@ parser.add_argument('-a','--axis',type=int, default=0)
 parser.add_argument('-r','--result', type=str, required=True)
 args = parser.parse_args()
 
-#C:/Users/MuzAn/Downloads/1234.jpg
 path1 = 'C:/Users/MuzAn/Downloads/123.jpg'
 path2 = args.path
 img_first = imread(path1)
@@ -33,4 +32,32 @@ imshow(img_first)
 fig.add_subplot(2, 3, 3)
 imshow(img)
 
+hist_red, bins_red = histogram(img_second[:, :, 2])
+hist_green, bins_green = histogram(img_second[:, :, 1])
+hist_blue, bins_blue = histogram(img_second[:, :, 0])
+
+fig.add_subplot(2, 3, 4)
+plt.plot(bins_green, hist_green, color='green', linestyle='-', linewidth=1)
+plt.plot(bins_red, hist_red, color='red', linestyle='-', linewidth=1)
+plt.plot(bins_blue, hist_blue, color='blue', linestyle='-', linewidth=1)
+
+hist_red, bins_red = histogram(img_first[:, :, 2])
+hist_green, bins_green = histogram(img_first[:, :, 1])
+hist_blue, bins_blue = histogram(img_first[:, :, 0])
+
+fig.add_subplot(2, 3, 5)
+plt.plot(bins_green, hist_green, color='green', linestyle='-', linewidth=1)
+plt.plot(bins_red, hist_red, color='red', linestyle='-', linewidth=1)
+plt.plot(bins_blue, hist_blue, color='blue', linestyle='-', linewidth=1)
+
+
+hist_red, bins_red = histogram(img[:, :, 2])
+hist_green, bins_green = histogram(img[:, :, 1])
+hist_blue, bins_blue = histogram(img[:, :, 0])
+fig.add_subplot(2, 3, 6)
+plt.plot(bins_green, hist_green, color='green', linestyle='-', linewidth=1)
+plt.plot(bins_red, hist_red, color='red', linestyle='-', linewidth=1)
+plt.plot(bins_blue, hist_blue, color='blue', linestyle='-', linewidth=1)
+
+plt.tight_layout()
 show()
