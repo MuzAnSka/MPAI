@@ -5,8 +5,14 @@ from skimage.io import imread, imshow, show, imsave
 from skimage.transform import resize
 from skimage.exposure import histogram
 
+parser = argparse.ArgumentParser(description= '')
+parser.add_argument('-p','--path', type=str, required=True)
+parser.add_argument('-a','--axis',type=int, default=0)
+args = parser.parse_args()
+
+#C:/Users/MuzAn/Downloads/1234.jpg
 path1 = 'C:/Users/MuzAn/Downloads/123.jpg'
-path2 = 'C:/Users/MuzAn/Downloads/1234.jpg'
+path2 = args.path
 img_first = imread(path1)
 img_second = imread(path2)
 
@@ -15,7 +21,7 @@ img_second = img_second/255
 
 img_first = resize(img_first, (img_second.shape[0], img_second.shape[1]))
 
-img = np.concatenate((img_second, img_first), axis=0, out=None, casting='same_kind')
+img = np.concatenate((img_second, img_first), axis=args.axis, out=None, casting='same_kind')
 
 fig = plt.figure(figsize=(15, 5))
 fig.add_subplot(2, 3, 1)
