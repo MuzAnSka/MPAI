@@ -8,6 +8,7 @@ from skimage.exposure import histogram
 parser = argparse.ArgumentParser(description= '')
 parser.add_argument('-p','--path', type=str, required=True)
 parser.add_argument('-a','--axis',type=int, default=0)
+parser.add_argument('-r','--result', type=str, required=True)
 args = parser.parse_args()
 
 #C:/Users/MuzAn/Downloads/1234.jpg
@@ -22,6 +23,7 @@ img_second = img_second/255
 img_first = resize(img_first, (img_second.shape[0], img_second.shape[1]))
 
 img = np.concatenate((img_second, img_first), axis=args.axis, out=None, casting='same_kind')
+imsave(args.result+'/result.jpg', img)
 
 fig = plt.figure(figsize=(15, 5))
 fig.add_subplot(2, 3, 1)
